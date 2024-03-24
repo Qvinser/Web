@@ -37,8 +37,14 @@ public:
 	void MoveRight(float axis);
 	virtual void Jump() override;
 	virtual void StopJumping() override;
-	void Dash();
-	void StopDashing();
+	UFUNCTION(Server, Reliable)
+	void Dash_Server();
+	UFUNCTION(NetMulticast, Reliable)
+	void Dash_Client();
+	UFUNCTION(Server, Reliable)
+	void StopDashing_Server();
+	UFUNCTION(NetMulticast, Reliable)
+	void StopDashing_Client();
 	void Run() const;
 	void StopRunning();
 	// Called to bind functionality to input
