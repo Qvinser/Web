@@ -15,7 +15,7 @@ AHumanCharacter::AHumanCharacter()
 void AHumanCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	dashed = false;
+	bDashed = false;
 	ServerSetMovement();
 }
 
@@ -56,7 +56,7 @@ void AHumanCharacter::StopJumping()
 }
 void AHumanCharacter::Dash_Server_Implementation()
 {
-	dashed = true;
+	bDashed = true;
 	Dash_Client();
 	FTimerHandle UnusedHandle;
 	GetWorldTimerManager().SetTimer(
@@ -64,7 +64,7 @@ void AHumanCharacter::Dash_Server_Implementation()
 }
 void AHumanCharacter::Dash_Client_Implementation()
 {
-	if (Controller!=NULL && dashed==true)
+	if (Controller!=NULL && bDashed==true)
 	{
 		if (!GetCharacterMovement()->IsMovingOnGround())
 		{
@@ -79,7 +79,7 @@ void AHumanCharacter::Dash_Client_Implementation()
 
 void AHumanCharacter::StopDashing_Server_Implementation()
 {
-	dashed=false;
+	bDashed=false;
 	StopDashing_Client();
 }
 void AHumanCharacter::StopDashing_Client_Implementation()
@@ -118,7 +118,7 @@ void AHumanCharacter::StopDashing_Client_Implementation()
 void AHumanCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (Controller!=NULL && dashed==true)
+	if (Controller!=NULL && bDashed==true)
 	{
 		const FRotator Rotator = this->GetActorRotation();
 		const FRotator YawRotator(0.0f, Rotator.Yaw, 0.0f);

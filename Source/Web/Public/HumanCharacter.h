@@ -23,7 +23,8 @@ protected:
 
 public:
 	float dashSpeed = 1050.0f;
-	bool dashed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool bDashed;
 	
 	void MoveRight(float axis);
 	virtual void Jump() override;
