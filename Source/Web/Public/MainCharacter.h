@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "MainCharacter.generated.h"
 
+
 UCLASS()
 class WEB_API AMainCharacter : public ACharacter
 {
@@ -22,11 +23,7 @@ protected:
 public:	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float walkSpeed = 450.0f;
-	float runSpeed = 750.0f;
-	float dashSpeed = 1050.0f;
 	bool bDead;
-	bool dashed;
-	bool running;
 	
 	// Called every frame
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
@@ -34,19 +31,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
 	class  UCameraComponent* FollowCamera;
 	virtual void Tick(float DeltaTime) override;
-	void MoveRight(float axis);
-	virtual void Jump() override;
-	virtual void StopJumping() override;
-	UFUNCTION(Server, Reliable)
-	void Dash_Server();
-	UFUNCTION(NetMulticast, Reliable)
-	void Dash_Client();
-	UFUNCTION(Server, Reliable)
-	void StopDashing_Server();
-	UFUNCTION(NetMulticast, Reliable)
-	void StopDashing_Client();
-	void Run() const;
-	void StopRunning();
+	UFUNCTION(Reliable, Server, WithValidation)
+	virtual void ServerSetMovement();
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 

@@ -10,9 +10,14 @@ UCLASS(minimalapi)
 class AWebGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-
+protected:
+	//void HandleStartingNewPlayer(APlayerController * NewPlayer) override;
+	virtual UClass* GetDefaultPawnClassForController_Implementation(AController* InController) override;
 public:
 	AWebGameMode();
+
+	TSubclassOf<APawn> PawnClass1;
+	TSubclassOf<APawn> PawnClass2;
 };
 
 
