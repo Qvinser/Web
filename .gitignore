@@ -1,6 +1,9 @@
 # Visual Studio 2015 user specific files
 .vs/
 
+# Assets libraries
+Content/Gothic_Cathedral/*
+
 # Compiled Object files
 *.slo
 *.lo

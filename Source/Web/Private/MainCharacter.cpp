@@ -32,6 +32,7 @@ AMainCharacter::AMainCharacter()
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
 	FollowCamera->FieldOfView = 15.0f;
 	FollowCamera->bUsePawnControlRotation = false;
+	FollowCamera->PostProcessSettings.VignetteIntensity = 0;
 	FollowCamera->SetUsingAbsoluteRotation(true);
 
 	GetCharacterMovement()->bOrientRotationToMovement=true;
@@ -70,6 +71,7 @@ void AMainCharacter::ServerSetMovement_Implementation()
 	SetActorRotation(FRotator(0.0f, 180.0f, 0.0f));
 	GetCharacterMovement()->bConstrainToPlane = true;
 	GetCharacterMovement()->SetPlaneConstraintAxisSetting(EPlaneConstraintAxisSetting::X);
+	CameraBoom->SetRelativeRotation_Direct(FRotator(0.0f, 0.0f, 0.0f));
 }
 
 bool AMainCharacter::ServerSetMovement_Validate()
@@ -81,7 +83,9 @@ bool AMainCharacter::ServerSetMovement_Validate()
 void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	
+	PlayerInputComponent->BindAxis("Turn Right / Left Mouse", this, &APawn::AddControllerYawInput);
+	PlayerInputComponent->BindAxis("Look Up / Down Mouse", this, &APawn::AddControllerPitchInput);
 }
 
 
