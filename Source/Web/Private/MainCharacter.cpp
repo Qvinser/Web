@@ -22,7 +22,7 @@ AMainCharacter::AMainCharacter()
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->bDoCollisionTest = false;
-	CameraBoom->TargetArmLength = 5000.0f;
+	CameraBoom->TargetArmLength = 1250.0f;
 	CameraBoom->bUsePawnControlRotation = false;
 	CameraBoom->bInheritPitch = false;
 	CameraBoom->bInheritRoll = false;
@@ -30,7 +30,7 @@ AMainCharacter::AMainCharacter()
 
 	FollowCamera=CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-	FollowCamera->FieldOfView = 15.0f;
+	FollowCamera->FieldOfView = 60.0f;
 	FollowCamera->bUsePawnControlRotation = false;
 	FollowCamera->PostProcessSettings.VignetteIntensity = 0;
 	FollowCamera->SetUsingAbsoluteRotation(true);
