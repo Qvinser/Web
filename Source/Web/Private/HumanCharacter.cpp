@@ -27,11 +27,12 @@ void AHumanCharacter::MoveRight(float axis)
 		{
 			//return;
 		}
-		const FRotator absoluteRotator = (FRotator(0.0f, 1.0f,0.0f));
-		const FVector absoluteDirection = FRotationMatrix(absoluteRotator).GetUnitAxis(EAxis::Y);
-		const FRotator Rotator = Controller->GetControlRotation();
-		const FRotator YawRotator(0.0f, Rotator.Yaw, 0.0f);
-		const FVector Direction = FRotationMatrix(YawRotator).GetUnitAxis(EAxis::Y);
+		const FRotator absoluteRotator = (FRotator(0, 1.0f,0));
+		FVector absoluteDirection = FRotationMatrix(absoluteRotator).GetUnitAxis(EAxis::Y);
+		absoluteDirection.X = axis < 0 ? 10e-5 : -10e-5;
+		//const FRotator Rotator = Controller->GetControlRotation();
+		//const FRotator YawRotator(0.0f, Rotator.Yaw, 0.0f);
+		//const FVector Direction = FRotationMatrix(YawRotator).GetUnitAxis(EAxis::Y);
 		AddMovementInput(absoluteDirection, axis);
 	}
 	
