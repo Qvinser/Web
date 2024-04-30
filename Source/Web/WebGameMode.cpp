@@ -1,6 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "WebGameMode.h"
+
+#include "WebGameInstance.h"
+#include "AIController.h"
 #include "MainPlayerController.h"
 #include "HumanCharacter.h"
 #include "AltCharacter.h"
@@ -23,7 +26,32 @@ AWebGameMode::AWebGameMode()
 
 UClass* AWebGameMode::GetDefaultPawnClassForController_Implementation(AController* InController)
 {
-	int numPlayers = GetNumPlayers();
+	const UClass* Class = InController->GetClass();
+	bool isBot = (IsValid(Class) && Class->IsChildOf(AAIController::StaticClass()));
+	bool isHost = (!isBot && InController->HasAuthority() && InController->IsLocalController());
+	UWebGameInstance* Instance = dynamic_cast<UWebGameInstance*>(GetGameInstance());
+	if (isHost)
+	{
+		switch (Instance->character_choice)
+		{
+		case BROTHER:
+			return PawnClass1;
+		default:
+			return PawnClass2;
+		}
+	}
+	else
+	{
+		switch (Instance->character_choice)
+		{
+		case BROTHER:
+			return PawnClass2;
+			break;
+		default:
+			return PawnClass1;
+		}
+	}
+	/*int numPlayers = GetNumPlayers();
 	if (numPlayers<=1)
 	{
 		if (PawnClass1 != NULL)
@@ -37,6 +65,6 @@ UClass* AWebGameMode::GetDefaultPawnClassForController_Implementation(AControlle
 		{
 			return PawnClass2;
 		}
-	}
+	}*/
 	return DefaultPawnClass;
 }

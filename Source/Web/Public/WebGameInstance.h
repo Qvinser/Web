@@ -15,11 +15,19 @@
 /**
  * 
  */
+UENUM()
+enum character_type{
+	BROTHER = 1,
+	SISTER = 2
+};
+
 UCLASS()
 class WEB_API UWebGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
-	
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	TEnumAsByte<character_type> character_choice = character_type::BROTHER;
 	UFUNCTION(BlueprintCallable, Category="Utilities")
 	static bool HostSession(APlayerController* Player, FName SessionName, bool bIsLAN, int32 MaxNumPlayers);
 };
