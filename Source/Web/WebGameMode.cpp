@@ -14,7 +14,7 @@ AWebGameMode::AWebGameMode()
 	// set default pawn class to our Blueprinted character
 	// static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/SecondPerson/Blueprints/Characters/BPHuman"));
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/SecondPerson/Blueprints/Characters/BP_male_character"));
-	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass2(TEXT("/Game/SecondPerson/Blueprints/Characters/BPGhost"));
+	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass2(TEXT("/Game/SecondPerson/Blueprints/Characters/BP_female_character"));
 	PawnClass1 = PlayerPawnBPClass.Class;
 	PawnClass2 = PlayerPawnBPClass2.Class;
 	if (PlayerPawnBPClass.Class != NULL)
