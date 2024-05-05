@@ -51,6 +51,8 @@ SourceArt/**/*.png
 SourceArt/**/*.tga
 
 # Binary Files
+Saved/*
+Windows/*
 Binaries/*
 Plugins/*/Binaries/*
 
