@@ -42,7 +42,7 @@ UClass* AWebGameMode::GetDefaultPawnClassForController_Implementation(AControlle
 	}
 	else
 	{
-		switch (Instance->character_choice)
+		switch (Instance->character_choice) 
 		{
 		case BROTHER:
 			return PawnClass2;
@@ -66,5 +66,5 @@ UClass* AWebGameMode::GetDefaultPawnClassForController_Implementation(AControlle
 			return PawnClass2;
 		}
 	}*/
-	return DefaultPawnClass;
+	// return DefaultPawnClass;
 }
