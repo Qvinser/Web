@@ -5,8 +5,6 @@
 #include "WebGameInstance.h"
 #include "AIController.h"
 #include "MainPlayerController.h"
-#include "HumanCharacter.h"
-#include "AltCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 AWebGameMode::AWebGameMode()
